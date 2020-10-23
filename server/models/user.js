@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
     minlength: 2,
     maxlength: 40,
   },
   surname: {
     type: String,
-    required: true,
+    // required: true,
     minlength: 2,
     maxlength: 40,
   },
   email: {
     type: String,
-    required: true,
+    // required: true,
     minlength: 2,
     maxlength: 40,
     unique: true,
@@ -24,15 +24,16 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-async function createUser() {
+async function createUser(req, res) {
   const user = new User({
-    name: 'Name',
-    surname: 'Surname',
-    email: 'name.surname@mail.com',
+    name: req.name,
+    surname: req.surname,
+    email: req.email,
   });
 
   const result = await user.save();
-  console.log(result);
+  res.send(user);
+  return result;
 }
 
-createUser();
+exports.createUser = createUser;
