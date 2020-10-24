@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createUser } = require('../models/user');
+const { createUser, fetchData } = require('../models/user');
 
 router.post('/', (req, res) => {
-  console.log(req.body);
+  fetchData(req.body, res);
   createUser(req.body, res);
 });
 
