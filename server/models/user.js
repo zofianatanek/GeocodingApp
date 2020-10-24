@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     maxlength: 40,
-    unique: true,
+    // unique: true,
   },
   // voviodeship: {
   //   type: String,
@@ -50,12 +50,12 @@ const userSchema = new mongoose.Schema({
     minLength: 3,
     maxLength: 30,
   },
-  coordX: {
-    type: String,
+  coords: {
+    type: Array,
   },
-  coordY: {
-    type: String,
-  },
+  // coordY: {
+  //   type: String,
+  // },
 });
 
 const User = mongoose.model('User', userSchema);
@@ -73,14 +73,19 @@ async function fetchData(req, res) {
     useExtServiceIfNotFound: true,
   };
   let url = 'https://testcapap.gugik.gov.pl/api/fts/gc/pkt';
-
+  let coordinates;
   await axios.post(url, data).then(function (response) {
     const data = response.data[0].single.geometry.coordinates;
-    console.log(data);
+    coordinates = data;
   });
+  return coordinates;
 }
 
 async function createUser(req, res) {
+  let coordinates = [];
+  await fetchData(req, res).then(function (result) {
+    coordinates.push(result);
+  });
   const user = new User({
     name: req.name,
     surname: req.surname,
@@ -89,6 +94,7 @@ async function createUser(req, res) {
     zipcode: req.zipcode,
     street: req.street,
     city: req.city,
+    coords: coordinates,
   });
 
   const result = await user.save();
