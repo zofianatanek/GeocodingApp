@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
   },
   street: {
     type: String,
-    // required: true,
+    required: true,
     minLength: 3,
     maxLength: 30,
   },
@@ -62,6 +62,7 @@ async function createUser(req, res) {
   await getCoordinates(req, res).then(function (result) {
     coordinates.push(result);
   });
+
   const user = new User({
     name: req.name,
     surname: req.surname,
@@ -78,4 +79,5 @@ async function createUser(req, res) {
   return result;
 }
 
+exports.User = User;
 exports.createUser = createUser;
