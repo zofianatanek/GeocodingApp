@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const axios = require('axios');
+const { getCoordinates } = require('../routes/getCoordinates');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     maxlength: 40,
-    // unique: true,
+    unique: true,
   },
   // voviodeship: {
   //   type: String,
@@ -53,37 +53,13 @@ const userSchema = new mongoose.Schema({
   coords: {
     type: Array,
   },
-  // coordY: {
-  //   type: String,
-  // },
 });
 
 const User = mongoose.model('User', userSchema);
 
-async function fetchData(req, res) {
-  let data = {
-    reqs: [
-      {
-        pkt_numer: `${req.number}`,
-        pkt_kodPocztowy: `${req.zipcode}`,
-        ul_pelna: `${req.street}`,
-        miejsc_nazwa: `${req.city}`,
-      },
-    ],
-    useExtServiceIfNotFound: true,
-  };
-  let url = 'https://testcapap.gugik.gov.pl/api/fts/gc/pkt';
-  let coordinates;
-  await axios.post(url, data).then(function (response) {
-    const data = response.data[0].single.geometry.coordinates;
-    coordinates = data;
-  });
-  return coordinates;
-}
-
 async function createUser(req, res) {
   let coordinates = [];
-  await fetchData(req, res).then(function (result) {
+  await getCoordinates(req, res).then(function (result) {
     coordinates.push(result);
   });
   const user = new User({
@@ -103,4 +79,3 @@ async function createUser(req, res) {
 }
 
 exports.createUser = createUser;
-exports.fetchData = fetchData;
