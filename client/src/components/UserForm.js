@@ -2,6 +2,7 @@ import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import axios from 'axios';
 import styled from 'styled-components';
+import AdressFormInput from './AdressFormInput';
 
 const ErrorMessage = styled.p`
   color: red;
@@ -103,6 +104,7 @@ class UserForm extends React.Component {
             </form>
           </MDBCol>
         </MDBRow>
+        <AdressFormInput />
       </MDBContainer>
     );
   }
