@@ -1,6 +1,12 @@
 import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+`;
 
 class UserForm extends React.Component {
   state = {
@@ -11,31 +17,24 @@ class UserForm extends React.Component {
     zipcode: '',
     street: '',
     number: '',
+    error: '',
   };
 
-  // sendUser = (e) => {
-  //   this.props.addUser(
-  //     this.state.name,
-  //     this.state.surname,
-  //     this.state.email,
-  //     this.state.city,
-  //     this.state.zipcode,
-  //     this.state.street,
-  //     this.state.number
-  //   );
-  // };
-
   addUser = async () => {
-    const request = await axios.post('http://localhost:3000/addUser', {
-      name: this.state.name,
-      surname: this.state.surname,
-      email: this.state.email,
-      city: this.state.city,
-      zipcode: this.state.zipcode,
-      street: this.state.street,
-      number: this.state.number,
-    });
-    console.log(request.data);
+    try {
+      const request = await axios.post('http://localhost:3000/addUser', {
+        name: this.state.name,
+        surname: this.state.surname,
+        email: this.state.email,
+        city: this.state.city,
+        zipcode: this.state.zipcode,
+        street: this.state.street,
+        number: this.state.number,
+      });
+      console.log(request);
+    } catch (err) {
+      this.setState({ error: err.response.data });
+    }
   };
 
   render() {
@@ -96,6 +95,7 @@ class UserForm extends React.Component {
                   size="sm"
                   onChange={(e) => this.setState({ number: e.target.value })}
                 />
+                <ErrorMessage>{this.state.error}</ErrorMessage>
               </div>
               <div className="text-center">
                 <MDBBtn onClick={this.addUser}>Zarejestruj</MDBBtn>
