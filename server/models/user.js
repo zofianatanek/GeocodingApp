@@ -99,7 +99,7 @@ function validateUser(user) {
     street: Joi.string().min(3).max(100),
     city: Joi.string().min(3).max(100),
   });
-  validation = schema.validate(user).error;
+  return (validation = schema.validate(user));
 }
 
 exports.User = User;

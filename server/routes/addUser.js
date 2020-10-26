@@ -5,13 +5,13 @@ const { createUser, User, validate } = require('../models/user');
 
 router.options('*', cors());
 
-router.post('/', async (req, res) => {
+router.post('/', cors(), async (req, res, next) => {
   const validation = await validate(req.body);
   const user = await User.findOne({ email: req.body.email });
   if (validation) {
-    return res.status(400).send(validation.error.details[0].message);
+    return res.send(validation.error.details[0].message);
   } else if (user) {
-    return res.status(400).send('Podany e-mail wystęuje w bazie');
+    return res.send('Podany e-mail wystęuje w bazie');
   } else {
     createUser(req.body, res);
   }
