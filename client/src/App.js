@@ -1,6 +1,7 @@
 import React from 'react';
 import UsersList from './components//UsersList';
 import UserForm from './components/UserForm';
+import UsersMap from './components/UsersMap';
 
 function App() {
   return (

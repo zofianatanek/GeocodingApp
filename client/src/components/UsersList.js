@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import UserTable from './User';
+import UsersMap from './UsersMap';
 
 class UsersList extends React.Component {
   state = { users: [] };
@@ -17,8 +18,10 @@ class UsersList extends React.Component {
 
   render() {
     let table;
+    let map;
     if (this.state.users.length !== 0) {
       table = <UserTable users={this.state.users}></UserTable>;
+      map = <UsersMap users={this.state.users}></UsersMap>;
     } else {
       table = 'Nie dodane jeszcze użytkownikow';
     }
@@ -27,6 +30,7 @@ class UsersList extends React.Component {
       <div>
         <h3>Users:</h3>
         {table}
+        {map}
       </div>
     );
   }
