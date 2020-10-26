@@ -9,7 +9,6 @@ function App() {
       <h2>Welcome to Geocoding App</h2>
       <UserForm />
       <UsersList />
-      <UsersMap />
     </div>
   );
 }

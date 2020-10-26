@@ -1,29 +1,22 @@
 import React from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import './UserMap.css';
+const UsersMap = (props) => {
+  const user = props.users.map((user, index) => {
+    let coords = [user.coords[0][1], user.coords[0][0]];
+    console.log(coords);
+    return <Marker position={coords}></Marker>;
+  });
 
-class UsersMap extends React.Component {
-  state = {
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13,
-  };
-  position = [this.state.lat, this.state.lng];
-  render() {
-    return (
-      <Map center={[45.4, -75.7]} zoom={12}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <Marker position={this.position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </Map>
-    );
-  }
-}
+  return (
+    <Map center={[52.215933, 19.134422]} zoom={6}>
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      {user}
+    </Map>
+  );
+};
 
 export default UsersMap;
