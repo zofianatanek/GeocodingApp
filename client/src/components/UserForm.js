@@ -10,6 +10,10 @@ const ErrorMessage = styled.p`
 `;
 
 class UserForm extends React.Component {
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
   state = {
     name: '',
     surname: '',
@@ -18,10 +22,12 @@ class UserForm extends React.Component {
     zipcode: '',
     street: '',
     number: '',
+    voivodeship: '',
     error: '',
   };
 
   addUser = async () => {
+    console.log(this.state.voivodeship);
     try {
       const request = await axios.post('http://localhost:3000/addUser', {
         name: this.state.name,
@@ -37,6 +43,10 @@ class UserForm extends React.Component {
       this.setState({ error: err.response.data });
     }
   };
+
+  handleChange(e) {
+    this.setState({ voivodeship: e.target.value });
+  }
 
   render() {
     return (
@@ -98,13 +108,13 @@ class UserForm extends React.Component {
                 />
                 <ErrorMessage>{this.state.error}</ErrorMessage>
               </div>
+              <AdressFormInput onChange={this.handleChange} />
               <div className="text-center">
                 <MDBBtn onClick={this.addUser}>Zarejestruj</MDBBtn>
               </div>
             </form>
           </MDBCol>
         </MDBRow>
-        <AdressFormInput />
       </MDBContainer>
     );
   }
