@@ -5,7 +5,11 @@ const UsersMap = (props) => {
   const user = props.users.map((user, index) => {
     let coords = [user.coords[0][1], user.coords[0][0]];
     console.log(coords);
-    return <Marker position={coords}></Marker>;
+    return (
+      <>
+        <Marker position={coords}></Marker>
+      </>
+    );
   });
 
   return (
