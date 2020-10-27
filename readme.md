@@ -4,7 +4,7 @@ Application created to register users, display list of registered users and map 
 
 ## Application interface
 
-(./img/ui1.png)
+![Example screenshot](./img/ui1.png)
 
 ## Technologies
 
@@ -23,6 +23,9 @@ nodemon index.js
 In client:
 npm install
 npm start
+
+## Demo
+https://zn-geocodingapp2-client.azurewebsites.net/
 
 ## Features
 
