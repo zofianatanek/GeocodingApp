@@ -9,8 +9,10 @@ const UserTable = (props) => {
         <td>{user.name}</td>
         <td>{user.surname}</td>
         <td>{user.email}</td>
+        <td>{user.voivodeship}</td>
+        <td>{user.district}</td>
+        <td>{user.community}</td>
         <td>{user.city}</td>
-        <td>{user.zipcode}</td>
         <td>{user.street}</td>
         <td>{user.number}</td>
       </tr>
@@ -24,8 +26,10 @@ const UserTable = (props) => {
           <th>Imię</th>
           <th>Nazwisko</th>
           <th>E-mail</th>
+          <th>Województwo</th>
+          <th>Powiat</th>
+          <th>Gmina</th>
           <th>Miasto</th>
-          <th>Kod pocztowy</th>
           <th>Ulica</th>
           <th>Numer</th>
         </tr>

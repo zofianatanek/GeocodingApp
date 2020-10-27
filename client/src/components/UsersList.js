@@ -28,7 +28,7 @@ class UsersList extends React.Component {
 
     return (
       <div>
-        <h3>Users:</h3>
+        <h3 style={{ margin: '60px 20px' }}>Przeglądanie użytkowników:</h3>
         {table}
         {map}
       </div>
