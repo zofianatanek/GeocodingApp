@@ -4,7 +4,7 @@ Application created to register users, display list of registered users and map 
 
 ## Application interface
 
-![Example screenshot](./img/ui1.png)
+![Example screenshot](./img/ui1.PNG)
 
 ## Technologies
 
