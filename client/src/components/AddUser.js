@@ -12,15 +12,18 @@ const AddUser = () => {
     street,
     number
   ) => {
-    const request = await axios.post('http://localhost:3000/addUser', {
-      name: name,
-      surname: surname,
-      email: email,
-      city: city,
-      zipcode: zipcode,
-      street: street,
-      number: number,
-    });
+    const request = await axios.post(
+      'https://zn-geocodingapp-server.azurewebsites.net/addUser',
+      {
+        name: name,
+        surname: surname,
+        email: email,
+        city: city,
+        zipcode: zipcode,
+        street: street,
+        number: number,
+      }
+    );
     console.log(request);
   };
 

@@ -11,7 +11,10 @@ class UsersList extends React.Component {
   }
 
   getUsers = async () => {
-    const response = await axios.get('http://localhost:3000/getUsers', {});
+    const response = await axios.get(
+      'https://zn-geocodingapp-server.azurewebsites.net/getUsers',
+      {}
+    );
     console.log(response);
     this.setState({ users: response.data });
   };
@@ -24,6 +27,7 @@ class UsersList extends React.Component {
       map = <UsersMap users={this.state.users}></UsersMap>;
     } else {
       table = 'Nie dodane jeszcze użytkownikow';
+      map = <UsersMap users={this.state.users}></UsersMap>;
     }
 
     return (
