@@ -22,37 +22,47 @@ const userSchema = new mongoose.Schema({
     maxlength: 80,
     unique: true,
   },
-  // voviodeship: {
-  //   type: String,
-  //   required: true,
-  // },
-  // district: {
-  //   type: String,
-  //   required: true,
-  // },
-  number: {
-    type: Number,
-    required: true,
-  },
-  zipcode: {
+  voivodeship: {
     type: String,
     required: true,
-    length: 6,
+    minLength: 3,
+    maxLength: 100,
+    lowercase: true,
   },
-  street: {
+  district: {
     type: String,
     required: true,
+    minLength: 3,
+    maxLength: 100,
+    lowercase: true,
+  },
+  community: {
+    type: String,
     minLength: 3,
     maxLength: 100,
     lowercase: true,
   },
   city: {
     type: String,
-    required: true,
     minLength: 3,
     maxLength: 100,
     lowercase: true,
   },
+  street: {
+    type: String,
+    minLength: 3,
+    maxLength: 100,
+    lowercase: true,
+  },
+  number: {
+    type: Number,
+  },
+  // zipcode: {
+  //   type: String,
+  //   required: true,
+  //   length: 6,
+  // },
+
   coords: {
     type: Array,
   },
@@ -70,10 +80,13 @@ async function createUser(req, res) {
     name: req.name,
     surname: req.surname,
     email: req.email,
-    number: req.number,
-    zipcode: req.zipcode,
-    street: req.street,
+    voivodeship: req.voivodeship,
+    district: req.district,
+    community: req.community,
     city: req.city,
+    street: req.street,
+    number: req.number,
+    // zipcode: req.zipcode,
     coords: coordinates,
   });
 
@@ -90,14 +103,16 @@ function validateUser(user) {
   const schema = Joi.object({
     name: Joi.string().min(2).max(40).required(),
     surname: Joi.string().min(2).max(40).required(),
-    name: Joi.string().min(2).max(40).required(),
     email: Joi.string().min(5).max(80).email().required(),
+    voivodeship: Joi.string().min(2),
+    district: Joi.string().min(2),
+    community: Joi.string().min(2),
+    city: Joi.string().min(2),
+    street: Joi.string().min(2),
     number: Joi.number(),
-    zipcode: Joi.string()
-      .regex(/^[0-9]{2}-[0-9]{3}$/)
-      .required(),
-    street: Joi.string().min(3).max(100),
-    city: Joi.string().min(3).max(100),
+    // zipcode: Joi.string()
+    //   .regex(/^[0-9]{2}-[0-9]{3}$/)
+    //   .required(),
   });
   return (validation = schema.validate(user));
 }
