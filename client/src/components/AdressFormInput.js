@@ -94,6 +94,7 @@ class AdressFormInput extends React.Component {
     try {
       const response = await axios.post(url, data);
       cities = response.data;
+      console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -184,6 +185,9 @@ class AdressFormInput extends React.Component {
               await this.getDistricts();
             }}
           >
+            <option disabled selected value="">
+              województwo
+            </option>
             {inputViovodeships}
           </select>
         </div>
@@ -206,6 +210,9 @@ class AdressFormInput extends React.Component {
               await this.getCommunities();
             }}
           >
+            <option disabled selected value="">
+              powiat
+            </option>
             {inputDistricts}
           </select>
         </div>
@@ -229,6 +236,9 @@ class AdressFormInput extends React.Component {
               await this.getCities();
             }}
           >
+            <option disabled selected value="">
+              gmina
+            </option>
             {inputCommunities}
           </select>
         </div>
@@ -252,6 +262,9 @@ class AdressFormInput extends React.Component {
               await this.getStreets();
             }}
           >
+            <option disabled selected value="">
+              miasto
+            </option>
             {inputCities}
           </select>
         </div>
@@ -274,6 +287,9 @@ class AdressFormInput extends React.Component {
               await this.getNumbers();
             }}
           >
+            <option disabled selected value="">
+              ulica
+            </option>
             {inputStreets}
           </select>
         </div>
@@ -295,6 +311,9 @@ class AdressFormInput extends React.Component {
               this.props.numberselect(e);
             }}
           >
+            <option disabled selected value="">
+              numer
+            </option>
             {inputNumbers}
           </select>
         </div>
