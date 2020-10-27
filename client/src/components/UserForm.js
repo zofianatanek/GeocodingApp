@@ -78,7 +78,9 @@ class UserForm extends React.Component {
         <MDBRow>
           <MDBCol md="6">
             <form>
-              <p className="h5 text-center mb-4">Rejestracja</p>
+              <p className="h5 text-center mb-4">
+                Rejestracja nowego użytkownika
+              </p>
               <div className="grey-text">
                 <MDBInput
                   label="Imię"
@@ -106,30 +108,6 @@ class UserForm extends React.Component {
                   size="sm"
                   onChange={(e) => this.setState({ email: e.target.value })}
                 />
-                {/* <MDBInput
-                  label="Miasto"
-                  group
-                  size="sm"
-                  onChange={(e) => this.setState({ city: e.target.value })}
-                />
-                <MDBInput
-                  label="Kod pocztowy"
-                  group
-                  size="sm"
-                  onChange={(e) => this.setState({ zipcode: e.target.value })}
-                />
-                <MDBInput
-                  label="ulica"
-                  group
-                  size="sm"
-                  onChange={(e) => this.setState({ street: e.target.value })}
-                />
-                <MDBInput
-                  label="numer"
-                  group
-                  size="sm"
-                  onChange={(e) => this.setState({ number: e.target.value })}
-                /> */}
                 <ErrorMessage>{this.state.error}</ErrorMessage>
               </div>
               <AdressFormInput

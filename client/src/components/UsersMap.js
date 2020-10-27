@@ -1,9 +1,7 @@
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker } from 'react-leaflet';
 import './UserMap.css';
 const UsersMap = (props) => {
-  // if (props.users.coords.length !== 0) {
-  // }
   const user = props.users.map((user, index) => {
     let coords = [user.coords[0][1], user.coords[0][0]];
     if (coords) {
