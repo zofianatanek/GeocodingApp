@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 require('./startup/db');
 require('./startup/routes')(app);
 
-// app.options(
-//   cors({
-//     origin: 'http://localhost:3001/',
-//   })
-// );
+app.options(
+  cors({
+    origin: 'http://localhost:3001/',
+  })
+);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Geocoding App');
