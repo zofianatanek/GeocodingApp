@@ -13,7 +13,8 @@ const AddUser = () => {
     number
   ) => {
     const request = await axios.post(
-      'https://zn-geocodingapp-server.azurewebsites.net/addUser',
+      // 'https://zn-geocodingapp-server.azurewebsites.net/addUser'
+      'http://localhost:3000/addUser',
       {
         name: name,
         surname: surname,

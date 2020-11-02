@@ -12,8 +12,8 @@ class UsersList extends React.Component {
 
   getUsers = async () => {
     const response = await axios.get(
-      'https://zn-geocodingapp-server.azurewebsites.net/getUsers',
-      {}
+      // 'https://zn-geocodingapp-server.azurewebsites.net/getUsers'
+      'http://localhost:3000/getUsers'
     );
     console.log(response);
     this.setState({ users: response.data });

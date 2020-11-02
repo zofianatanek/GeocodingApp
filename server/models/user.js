@@ -101,9 +101,17 @@ async function createUser(req, res) {
 
 function validateUser(user) {
   const schema = Joi.object({
-    name: Joi.string().min(2).max(40).required(),
-    surname: Joi.string().min(2).max(40).required(),
-    email: Joi.string().min(5).max(80).email().required(),
+    name: Joi.string()
+      .min(2)
+      .max(40)
+      .regex(/[a-zA-Z]/)
+      .required(),
+    surname: Joi.string()
+      .min(2)
+      .max(40)
+      .regex(/[a-zA-Z]/)
+      .required(),
+    email: Joi.string().email().required(),
     voivodeship: Joi.string().min(2),
     district: Joi.string().min(2),
     community: Joi.string().min(2),
