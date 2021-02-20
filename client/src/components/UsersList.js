@@ -26,7 +26,7 @@ class UsersList extends React.Component {
       table = <UserTable users={this.state.users}></UserTable>;
       map = <UsersMap users={this.state.users}></UsersMap>;
     } else {
-      table = 'Nie dodane jeszcze użytkownikow';
+      table = 'Nie dodano jeszcze użytkowników';
       map = <UsersMap users={this.state.users}></UsersMap>;
     }
 
