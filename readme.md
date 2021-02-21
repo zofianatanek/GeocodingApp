@@ -25,7 +25,7 @@ npm install
 npm start
 
 ## Demo
-https://git.heroku.com/morning-eyrie-15683.git
+https://morning-eyrie-15683.herokuapp.com/
 
 ## Features
 
