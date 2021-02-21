@@ -25,7 +25,7 @@ npm install
 npm start
 
 ## Demo
-https://zn-geocodingapp2-client.azurewebsites.net/
+https://git.heroku.com/morning-eyrie-15683.git
 
 ## Features
 
